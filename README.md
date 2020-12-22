@@ -51,3 +51,29 @@
     0.009487978730289174
     > (exit)
     $
+
+## Excercise 1.8
+
+    $ cat ex_1.8.rkt
+    (define (square x)
+      (* x x))
+
+    (define (cube x)
+      (* x x x))
+
+    (define (improve guess x)
+      (/ (+ (* 2 guess) (square (/ x guess))) 3))
+
+    (define (cube-root-iter guess previous-guess x)
+      (if (< (abs(- previous-guess guess)) 0.001)
+        guess
+        (cube-root-iter (improve guess x) guess x)))
+
+    (define (cube-root x)
+      (cube-root-iter 1.0 0.0 x))
+    $ racket --load ex_1.8.rkt --repl
+    Welcome to Racket v7.9 [bc].
+    > (cube-root 27)
+    9.000000000053902
+    > (exit)
+    $
