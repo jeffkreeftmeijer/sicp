@@ -33,24 +33,21 @@
     (define (average x y)
       (/ (+ x y) 2))
 
-    (define (good-enough? guess x)
-      (< (abs(- (square guess) x)) 0.001))
-
     (define (improve guess x)
       (average guess (/ x guess)))
 
-    (define (sqrt-iter guess x)
-      (if (good-enough? guess x)
+    (define (sqrt-iter guess previous-guess x)
+      (if (< (abs(- previous-guess guess)) 0.001)
         guess
-        (sqrt-iter (improve guess x) x)))
+        (sqrt-iter (improve guess x) guess x)))
 
     (define (sqrt x)
-      (sqrt-iter 1.0 x))
+      (sqrt-iter 1.0 0.0 x))
     $ racket --load ex_1.7.rkt --repl
     Welcome to Racket v7.9 [bc].
     > (sqrt 9)
-    3.00009155413138
-    > (sqrt 0.0009)
-    0.04030062264654547
+    3.000000001396984
+    > (sqrt 0.00009)
+    0.009487978730289174
     > (exit)
     $
