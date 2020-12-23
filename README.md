@@ -101,3 +101,26 @@
     25
     > (exit)
     $
+
+# Exercise 1.12
+
+    $ cat ex_1.12.rkt
+    (define (pascal row column)
+      (cond ((= row 1) 1)
+            ((or (= column 1) (= column row)) 1)
+            (else (+ (pascal (- row 1) (- column 1)) (pascal (- row 1) column)))))
+    $ racket --load ex_1.12.rkt --repl
+    Welcome to Racket v7.9 [bc].
+    > (pascal 1 1)
+    1
+    > (pascal 2 1)
+    1
+    > (pascal 2 2)
+    1
+    > (pascal 3 1)
+    1
+    > (pascal 3 2)
+    2
+    > (pascal 3 3)
+    1
+    > (exit)
