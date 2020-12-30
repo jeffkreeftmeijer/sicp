@@ -147,3 +147,28 @@
     > (count-change 11)
     4
     > (exit)
+
+# Exercise 1.21
+
+    $ cat ex_1.21.rkt
+    (define (divides? a b) (= (remainder b a) 0))
+
+    (define (square x) (* x x))
+
+    (define (smallest-divisor n)
+      (find-divisor n 2))
+
+    (define (find-divisor n test)
+      (cond ((> (square test) n) n)
+            ((divides? test n) test)
+            (else (find-divisor n (+ test 1)))))
+
+    $ racket --load ex_1.21.rkt --repl
+    Welcome to Racket v7.9 [bc].
+    > (smallest-divisor 199)
+    199
+    > (smallest-divisor 1999)
+    1999
+    > (smallest-divisor 19999)
+    7
+    > (exit)
