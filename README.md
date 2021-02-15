@@ -172,3 +172,21 @@
     > (smallest-divisor 19999)
     7
     > (exit)
+
+# Exercise 2.1
+
+    $ cat ex_2.1.rkt 
+    (define (make-rat n d) 
+      (cond ((< d 0) (cons (- 0 n) (- 0 d)))
+            (else (cons n d))))
+
+    $ racket --load ex_2.1.rkt --repl
+    Welcome to Racket v7.9 [bc].
+    > (make-rat 1 2)
+    '(1 . 2)
+    > (make-rat -1 -2)
+    '(1 . 2)
+    > (make-rat -1 2)
+    '(-1 . 2)
+    > (make-rat 1 -2)
+    '(-1 . 2)
