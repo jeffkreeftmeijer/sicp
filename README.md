@@ -190,3 +190,42 @@
     '(-1 . 2)
     > (make-rat 1 -2)
     '(-1 . 2)
+
+# Exercise 2.2
+
+    $ cat ex_2.2.rkt
+    (define (make-point x y) 
+      (cons x y))
+
+    (define (x-point point)
+      (car point))
+
+    (define (y-point point)
+      (cdr point))
+
+    (define (make-segment start-segment end-segment)
+      (cons start-segment end-segment))
+
+    (define (start-segment segment)
+      (car segment))
+
+    (define (end-segment segment)
+      (cdr segment))
+
+    (define (midpoint-segment segment)
+      (make-point 
+        (/ 
+          (+ 
+            (x-point (start-segment segment))
+            (x-point (end-segment segment)))
+          2)
+        (/ 
+          (+
+            (y-point (start-segment segment))
+            (y-point (end-segment segment)))
+          2)))
+
+    ~/sicp (master) 🦞 racket --load ex_2.2.rkt --repl
+    Welcome to Racket v7.9 [bc].
+    > (midpoint-segment (make-segment (make-point 0 0) (make-point 1 1))) 
+    '(1/2 . 1/2)
